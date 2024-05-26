@@ -19,7 +19,7 @@ namespace AssetRollback
                 + $"-{lastWriteTime.Minute:D2}-{lastWriteTime.Second:D2}";
         }
         
-        private const string identifierRegex = @"(?<identifier>[^_]+)_(?<lastWriteTime>\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})$";
+        private const string identifierRegex = @"(?<identifier>.+)_(?<lastWriteTime>\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})$";
         
         /// <summary>Construct AssetBackup that represents given backupFile</summary>
         public AssetBackup(string backupPath)
