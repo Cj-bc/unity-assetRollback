@@ -25,7 +25,7 @@ namespace AssetRollback
         public AssetBackup(string backupPath)
         {
             assetPath = ""; // TODO: how can I retrive this?
-            var matches = Regex.Match(identifierRegex, Path.GetFileName(backupPath));
+            var matches = Regex.Match(Path.GetFileName(backupPath), identifierRegex);
             if (!matches.Success)
             {
                 throw new ArgumentException("Filename should match identifierRegex, but failed to parse it");
