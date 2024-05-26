@@ -1,0 +1,11 @@
+* Unity AssetRollback
+
+An utility tool to provide asset modification rollback system.
+
+** Features
+*** Makes backup as you save your file
+Making backup file is automatically created when you save your asset via "Save" functionality.
+
+(Currently, it can't detect saving by VFX graph's save button.)
+*** Right-click on asset to show list of backups and restore
+

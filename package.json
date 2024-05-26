@@ -1,0 +1,19 @@
+{
+  "name": "com.github.cj-bc.unity-assetrollback",
+  "version": "0.0.1",
+  "displayName": "Asset Rollback",
+  "description": "An utility tool to rollback asset modification.",
+  "unity": "2022.3",
+  "unityRelease": "0b5",
+    "documentationUrl": "https://github.com/Cj-bc/unity-assetRollback",
+  "dependencies": {
+ },
+ "keywords": [
+    "Asset management"
+  ],
+  "author": {
+    "name": "Cj-bc",
+    "email": "cj.bc-sd@outlook.jp",
+      "url": "https://github.com/Cj-bc"
+  }
+}
