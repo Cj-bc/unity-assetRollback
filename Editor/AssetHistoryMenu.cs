@@ -17,7 +17,7 @@ namespace AssetRollback
         [MenuItem("Assets/Show Asset rollback files")]
         static void ShowMenu()
         {
-            if (Selection.objects.Length > 0)
+            if (Selection.objects.Length > 0 && AssetDatabase.Contains(Selection.objects[0]))
             {
                 var menu = new GenericMenu();
                 foreach (var path in GetBackupPathsFor(AssetDatabase.GetAssetPath(Selection.objects[0])))
@@ -25,6 +25,9 @@ namespace AssetRollback
                     menu.AddItem(new GUIContent(path.lastWriteTime.ToString("s")), false, () => Debug.Log("Clicked"));
                 }
                 menu.DropDown(Rect.zero);
+            } else
+            {
+                Debug.Log("Show Asset rollback files: Could not find available backups for given object");
             }
         }
     }
