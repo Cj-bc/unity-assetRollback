@@ -15,8 +15,8 @@ namespace AssetRollback
         public string identifier { get; private set; }
         /// <summary>Actual filename of this backup</summary>
         public string backupFileName
-        { get => $"{identifier}_{lastWriteTime.Year}-{lastWriteTime.Month}-{lastWriteTime.Day}-{lastWriteTime.Hour}"
-                + "-{lastWriteTime.Minute}-{lastWriteTime.Second}";
+        { get => $"{identifier}_{lastWriteTime.Year:D4}-{lastWriteTime.Month:D2}-{lastWriteTime.Day:D2}-{lastWriteTime.Hour:D2}"
+                + $"-{lastWriteTime.Minute:D2}-{lastWriteTime.Second:D2}";
         }
         
         private const string identifierRegex = @"(?<identifier>[^_]+)_(?<lastWriteTime>\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})$";
