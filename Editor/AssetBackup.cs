@@ -19,7 +19,7 @@ namespace AssetRollback
                 + $"-{lastWriteTime.Minute:D2}-{lastWriteTime.Second:D2}";
         }
         
-        private const string identifierRegex = @"(?<identifier>.+)_(?<lastWriteTime>\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})$";
+        private const string identifierRegex = @"(?<identifier>.+)_(?<lastWriteTime>(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})-(?<hour>\d{2})-(?<minute>\d{2})-(?<second>\d{2}))$";
         
         /// <summary>Construct AssetBackup that represents given backupFile</summary>
         public AssetBackup(string backupPath)
@@ -33,8 +33,8 @@ namespace AssetRollback
             
             identifier = matches.Groups["identifier"].Value;
             string _timestamp = matches.Groups["lastWriteTime"].Value;
-            System.DateTime.TryParse(_timestamp, out DateTime _time);
-            lastWriteTime = _time;
+            lastWriteTime = new DateTime(int.Parse(matches.Groups["year"].Value), int.Parse(matches.Groups["month"].Value), int.Parse(matches.Groups["day"].Value),
+                                         int.Parse(matches.Groups["hour"].Value), int.Parse(matches.Groups["minute"].Value), int.Parse(matches.Groups["second"].Value));
         }
         
         internal AssetBackup(string assetPath, string identifier, DateTime lastWriteTime)
