@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -19,10 +20,18 @@ namespace AssetRollback
         {
             if (Selection.objects.Length > 0 && AssetDatabase.Contains(Selection.objects[0]))
             {
+                var selectedObject = Selection.objects[0];
+                var correspondingAssetPath = AssetDatabase.GetAssetPath(selectedObject);
                 var menu = new GenericMenu();
-                foreach (var path in GetBackupPathsFor(AssetDatabase.GetAssetPath(Selection.objects[0])))
+                foreach (var path in GetBackupPathsFor(correspondingAssetPath))
                 {
-                    menu.AddItem(new GUIContent(path.lastWriteTime.ToString("s")), false, () => Debug.Log("Clicked"));
+                    menu.AddItem(new GUIContent(path.lastWriteTime.ToString("s")), false, (obj) =>
+                    {
+                        Undo.RecordObject(obj as UnityEngine.Object, "Rollbacked asset.");
+                        File.Copy(Path.Combine(AssetRollback.backupStorePath, path.backupFileName), correspondingAssetPath, true);
+                        File.SetLastWriteTime(correspondingAssetPath, DateTime.Now);
+                        AssetDatabase.Refresh();
+                    }, selectedObject);
                 }
                 menu.DropDown(Rect.zero);
             } else
