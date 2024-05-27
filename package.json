@@ -4,6 +4,7 @@
   "displayName": "Asset Rollback",
   "description": "An utility tool to rollback asset modification.",
   "unity": "2022.3",
+  "licensesUrl": "https://github.com/Cj-bc/unity-assetRollback/blob/master/LICENSE",
   "unityRelease": "0b5",
     "documentationUrl": "https://github.com/Cj-bc/unity-assetRollback",
   "dependencies": {
